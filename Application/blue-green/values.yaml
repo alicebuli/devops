@@ -10,4 +10,4 @@ deployment:
   - name: pink
     replicas: 1
     color: pink
-    weight: 10
+    weight: 5
