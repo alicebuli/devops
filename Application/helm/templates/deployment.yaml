@@ -11,6 +11,7 @@ spec:
     metadata:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        argocd.argoproj.io/compare-options: IgnoreExtraneous
       labels:
         app: {{ .Chart.Name }}
     spec:
