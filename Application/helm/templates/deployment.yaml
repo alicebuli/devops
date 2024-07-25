@@ -2,11 +2,6 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: {{ .Chart.Name }}
-  annotations:
-    argocd.argoproj.io/sync-wave: "1"
-    argocd.argoproj.io/sync-options: Validate=false
-    argocd.argoproj.io/sync-hook: post-sync
-    checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
 spec:
   replicas: {{ .Values.ReplicaNumber }}
   selector:
@@ -14,6 +9,8 @@ spec:
       app: {{ .Chart.Name }}
   template:
     metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
       labels:
         app: {{ .Chart.Name }}
     spec:
