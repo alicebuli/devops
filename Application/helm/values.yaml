@@ -27,4 +27,8 @@ probes:
 volume:
   mount:
     path: /tmp/html
+
+argocd:
+  syncwave:
+    deployment: 5
     
